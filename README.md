@@ -44,14 +44,16 @@ Pruebas de navegador en escritorio (1440 px) y celular (390 px): carga de recurs
 ## Interacciones
 
 - Formulario emergente después de 2,2 segundos, con cierre, navegación por teclado y una aparición por sesión. También se abre desde los botones de contacto.
-- Admisión 2026 y 2027 muestran una guía visual independiente, con selector de año y consulta contextual.
+- Admisión 2026 y 2027 aparecen sobre la parte inferior del video de portada, con tipografía y colores coordinados. Muestran una guía visual independiente, con selector de año y consulta contextual.
 - Prebásica, Básica y Media abren su presentación y permiten consultar por ese nivel.
-- Testimonios con controles anterior y siguiente, menú móvil y animaciones al desplazarse.
+- Tarjetas de niveles con un 33% más de altura que la propuesta inicial.
+- Testimonios con fotografías que cambian con el relato y controles anterior y siguiente. Un apartado de video abre una pieza ilustrativa de 30 segundos con narración sintética en español, subtítulos y transcripción. No simula una entrevista real ni animación labial.
+- Menú móvil y animaciones suaves de abajo hacia arriba al desplazarse. Los elementos pueden volver a animarse si se regresa a ellos, y respetan la preferencia de movimiento reducido.
 - Video local silencioso de 19 segundos, con pausa y respeto a la preferencia de movimiento reducido.
 
 ## Material provisional y pendientes antes de publicar
 
-- Las tres fotografías fueron generadas con IA para este diseño. No representan al alumnado ni las instalaciones reales. El video es un montaje animado de estas imágenes, no una grabación real ni una visita filmada. Los originales están en `/workspace/generated_images`; los WebP optimizados y el MP4 usados por la web están en `public/assets/`.
+- Las fotografías fueron generadas con IA para este diseño. No representan al alumnado, los apoderados ni las instalaciones reales. Los videos son montajes animados de estas imágenes, no grabaciones reales. El ejemplo de familias incorpora voz sintética creada con eSpeak NG; está identificado como recreación y no representa una experiencia real. Los originales están en `/workspace/generated_images`; los WebP optimizados, los MP4 y los subtítulos usados por la web están en `public/assets/`.
 - El escudo SVG es una recreación provisional inspirada en la referencia compartida; debe sustituirse por el archivo oficial del colegio. El nombre y la paleta siguen la referencia del usuario.
 - Los textos educativos, las etapas de admisión y los testimonios son ejemplos identificados como tales. No se inventaron fechas, vacantes ni requisitos oficiales.
 - El formulario valida campos pero **no envía ni almacena datos**. Nunca muestra un éxito de envío ficticio. Falta confirmar el correo o servicio receptor, conectar un backend con validación, incorporar la política definitiva y configurar protección antispam. No se simula una verificación Cloudflare.

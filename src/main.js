@@ -1,6 +1,9 @@
 import './style.css';
+import './refinements.css';
 
 const assets = `${import.meta.env.BASE_URL}assets/`;
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+document.documentElement.classList.toggle('motion-ready', !reducedMotion.matches);
 
 const paths = {
   arrow: '<path d="M4 12h15m-6-6 6 6-6 6"/>',
@@ -46,13 +49,11 @@ document.querySelector('#app').innerHTML = `
         <p>El lugar donde tus hijos se sienten seguros,<br class="desktop-break"> descubren sus talentos y crecen acompañados.</p>
         <a class="hero-link" href="#colegio">Conoce nuestra comunidad <span class="circle-arrow">${icon('arrow')}</span></a>
       </div>
+      <div class="admission-entry container" id="admision" role="group" aria-label="Procesos de admisión">
+        <button class="year-card year-light reveal" data-admission="2026"><span class="year-label">CONSTRUYAMOS SU PRESENTE</span><span class="year-title">Admisión <em>2026</em></span><span class="year-detail">Conoce el proceso <span class="year-arrow">${icon('diagonal')}</span></span></button>
+        <button class="year-card year-gold reveal" data-admission="2027"><span class="year-label">IMAGINEMOS LO QUE VIENE</span><span class="year-title">Admisión <em>2027</em></span><span class="year-detail">Conoce el proceso <span class="year-arrow">${icon('diagonal')}</span></span></button>
+      </div>
       <div class="container hero-bottom"><a href="#niveles" class="scroll-hint"><span class="scroll-mouse"></span> Un futuro que comienza aquí</a><button id="video-control" class="video-control" aria-label="Pausar video de portada">${icon('pause')} <span>Pausar video</span></button></div>
-    </section>
-
-    <section class="admission-entry container" id="admision" aria-label="Procesos de admisión">
-      <div class="admission-intro"><span class="eyebrow">SEAMOS PARTE DE SU HISTORIA</span><h2>Su próximo gran paso<br>comienza contigo.</h2></div>
-      <button class="year-card year-light" data-admission="2026"><span class="year-label">CONOCE EL PROCESO</span><span class="year-title">Admisión <strong>2026</strong></span><span class="year-detail">Construyamos su presente ${icon('diagonal')}</span></button>
-      <button class="year-card year-gold" data-admission="2027"><span class="year-label">PROYECTEMOS SU FUTURO</span><span class="year-title">Admisión <strong>2027</strong></span><span class="year-detail">Imaginemos lo que viene ${icon('diagonal')}</span></button>
     </section>
 
     <section class="values container" aria-label="Lo que nos inspira">
@@ -78,9 +79,23 @@ document.querySelector('#app').innerHTML = `
       <div class="about-copy reveal"><span class="eyebrow">EL SELLO ARAGÓN</span><h2>Un colegio que enseña.<br>Una comunidad<br>que <em>acompaña.</em></h2><p>Elegir colegio es elegir a quienes acompañarán a tus hijos a descubrir quiénes son y todo lo que pueden llegar a ser.</p><p>Queremos que conozcas los espacios, las personas y la forma de aprender que darán vida a esa decisión.</p><button class="text-link" data-contact>Nos encantaría conocerte ${icon('arrow')}</button><div class="about-signature">${icon('sprout')} Crecer con confianza. Aprender con sentido.</div></div>
     </section>
 
-    <section class="families section-space" id="familias"><div class="container family-layout">
-      <div class="reveal"><span class="eyebrow light">VOCES QUE NOS ACERCAN</span><h2>Cada familia,<br><em>una historia.</em></h2><p>La confianza se construye día a día.<br>Este será el espacio para compartirla.</p><div class="quote-controls"><button class="icon-button quote-prev" aria-label="Testimonio anterior">${icon('arrow')}</button><span id="quote-position">01 / 03</span><button class="icon-button quote-next" aria-label="Testimonio siguiente">${icon('arrow')}</button></div></div>
-      <div class="quote-card reveal" aria-live="polite"><span class="quote-mark" aria-hidden="true">“</span><p id="quote-text">Queremos un lugar donde nuestros hijos aprendan con alegría y se sientan acompañados en cada paso.</p><div class="quote-person"><span class="avatar">${icon('users')}</span><div><strong id="quote-person">Una familia, una nueva historia</strong><span>Testimonio de ejemplo · pendiente de reemplazo</span></div></div></div>
+    <section class="families section-space" id="familias"><div class="container">
+      <div class="family-heading reveal"><div><span class="eyebrow light">VOCES QUE NOS ACERCAN</span><h2>La confianza tiene rostro.<br><em>Y una historia que contar.</em></h2></div><p>Elegir un colegio también es sentirse parte.<br>Un espacio para las voces de nuestra comunidad.</p></div>
+      <div class="family-layout">
+        <button class="family-film reveal" data-story-video aria-label="Reproducir video de ejemplo de familias">
+          <img src="${assets}familias-portada.webp" alt="Una pareja de apoderados durante una entrevista ilustrativa creada con IA" loading="lazy" />
+          <span class="film-shade"></span><span class="film-label">HISTORIAS QUE NOS UNEN</span>
+          <span class="film-play">${icon('play')}</span>
+          <span class="film-caption"><span class="film-title">Crecer juntos,<br>sentirse en casa.</span><span class="film-action">Ver video de ejemplo ${icon('arrow')}</span></span>
+          <span class="film-duration">00:30</span>
+        </button>
+        <article class="quote-card reveal" aria-live="polite" aria-atomic="true">
+          <div class="quote-photo"><img id="quote-photo" src="${assets}familia-madre.webp" alt="Madre e hija en un jardín escolar, imagen ilustrativa IA" loading="lazy" /><span class="quote-photo-tag">VOCES DE FAMILIAS</span></div>
+          <div class="quote-body"><span class="quote-mark" aria-hidden="true">“</span><p id="quote-text">Queremos un lugar donde nuestros hijos aprendan con alegría y se sientan acompañados en cada paso.</p><div class="quote-person"><span class="avatar">${icon('heart')}</span><div><strong id="quote-person">Una familia, una nueva historia</strong><span>Testimonio de ejemplo · imagen ilustrativa IA</span></div></div>
+          <div class="quote-navigation"><span id="quote-position">01 / 03</span><div class="quote-controls"><button class="icon-button quote-prev" aria-label="Testimonio anterior">${icon('arrow')}</button><button class="icon-button quote-next" aria-label="Testimonio siguiente">${icon('arrow')}</button></div></div></div>
+        </article>
+      </div>
+      <p class="family-disclosure reveal">Una muestra de cómo contaremos sus historias. Fotografías, relatos y video de ejemplo creados con IA; no corresponden a testimonios reales.</p>
     </div></section>
 
     <section class="contact-section section-space container" id="contacto"><div class="contact-banner reveal"><span class="contact-decoration" aria-hidden="true">${icon('sprout')}</span><div><span class="eyebrow">EL PRIMER PASO ES CONOCERNOS</span><h2>Hablemos del futuro<br>de tus hijos.</h2><p>Cuéntanos qué buscas. Nos encantará orientarte.</p></div><button class="button button-navy" data-contact>Conversemos ${icon('arrow')}</button></div></section>
@@ -108,6 +123,7 @@ for (const dialog of [contactDialog, detailDialog]) {
     if (event.target === dialog && (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom)) closeDialog(dialog);
   });
   dialog.addEventListener('close', () => {
+    dialog.querySelectorAll('video').forEach(player => player.pause());
     if (!document.querySelector('dialog[open]')) document.body.classList.remove('dialog-open');
     lastFocused?.focus({ preventScroll: true });
   });
@@ -160,7 +176,6 @@ document.addEventListener('keydown', event => { if (event.key === 'Escape') clos
 
 const video = document.querySelector('#hero-video');
 const control = document.querySelector('#video-control');
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 function syncVideoControl() {
   const paused = video.paused;
   control.innerHTML = `${icon(paused ? 'play' : 'pause')} <span>${paused ? 'Reproducir video' : 'Pausar video'}</span>`;
@@ -170,29 +185,48 @@ video.addEventListener('play', syncVideoControl);
 video.addEventListener('pause', syncVideoControl);
 video.addEventListener('error', () => { control.hidden = true; });
 control.addEventListener('click', () => { if (video.paused) video.play().catch(() => {}); else video.pause(); });
-function applyMotionPreference() { if (reducedMotion.matches) video.pause(); }
+function applyMotionPreference() {
+  document.documentElement.classList.toggle('motion-ready', !reducedMotion.matches);
+  if (reducedMotion.matches) video.pause();
+}
 reducedMotion.addEventListener('change', applyMotionPreference);
 applyMotionPreference();
 
 const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-  if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
-}), { threshold: 0.12 });
+  if (entry.isIntersecting) entry.target.classList.add('visible');
+  // Rearm only elements that have moved below the viewport, never those just
+  // leaving through the top. This avoids flicker during downward scrolling.
+  else if (entry.boundingClientRect.top >= window.innerHeight) entry.target.classList.remove('visible');
+}), { threshold: 0.1, rootMargin: '0px 0px -24px 0px' });
 document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
 
 const quotes = [
-  ['Queremos un lugar donde nuestros hijos aprendan con alegría y se sientan acompañados en cada paso.', 'Una familia, una nueva historia'],
-  ['Conocer a las personas que acompañarán a nuestros hijos hace que una gran decisión se sienta más cercana.', 'La confianza comienza al conocernos'],
-  ['Crecer es atreverse a descubrir. Acompañarlos con cariño y confianza hace toda la diferencia.', 'Un camino que compartimos'],
+  ['Queremos un lugar donde nuestros hijos aprendan con alegría y se sientan acompañados en cada paso.', 'Una familia, una nueva historia', 'familia-madre.webp', 'Madre e hija en un jardín escolar, imagen ilustrativa IA'],
+  ['Conocer a las personas que acompañarán a nuestros hijos hace que una gran decisión se sienta más cercana.', 'La confianza comienza al conocernos', 'familia-padre.webp', 'Padre e hijo compartiendo en el colegio, imagen ilustrativa IA'],
+  ['Crecer es atreverse a descubrir. Acompañarlos con cariño y confianza hace toda la diferencia.', 'Un camino que compartimos', 'familias-portada.webp', 'Pareja de apoderados en un patio escolar, imagen ilustrativa IA'],
 ];
 let quoteIndex = 0;
 function changeQuote(direction) {
   quoteIndex = (quoteIndex + direction + quotes.length) % quotes.length;
   document.querySelector('#quote-text').textContent = quotes[quoteIndex][0];
   document.querySelector('#quote-person').textContent = quotes[quoteIndex][1];
+  document.querySelector('#quote-photo').src = `${assets}${quotes[quoteIndex][2]}`;
+  document.querySelector('#quote-photo').alt = quotes[quoteIndex][3];
   document.querySelector('#quote-position').textContent = `0${quoteIndex + 1} / 03`;
+  if (!reducedMotion.matches) document.querySelector('.quote-body').animate(
+    [{ opacity: 0.35, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }],
+    { duration: 400, easing: 'ease-out' },
+  );
 }
 document.querySelector('.quote-prev').addEventListener('click', () => changeQuote(-1));
 document.querySelector('.quote-next').addEventListener('click', () => changeQuote(1));
+
+document.querySelector('[data-story-video]').addEventListener('click', () => {
+  video.pause();
+  document.querySelector('#detail-content').innerHTML = `<div class="story-dialog-heading"><span class="eyebrow">HISTORIAS QUE NOS UNEN</span><h2 id="detail-title">Crecer juntos,<br><em>sentirse en casa.</em></h2><p>Video de ejemplo · recreación ilustrativa con IA</p></div><video id="family-video" class="family-video" controls playsinline preload="metadata" poster="${assets}familias-portada.webp" aria-label="Video de ejemplo de familias, con imágenes IA y narración sintética en español"><source src="${assets}familias-ejemplo.mp4" type="video/mp4" /><track kind="captions" src="${assets}familias-es.vtt" srclang="es" label="Español" default /></video><div class="story-dialog-note"><p>Imágenes y voz sintéticas para mostrar el formato de esta sección. No es una entrevista real ni representa experiencias de apoderados del colegio.</p><details><summary>Leer el relato de ejemplo</summary><p>Como familia, buscamos un lugar donde nuestros hijos puedan aprender con alegría y sentirse seguros. Para nosotros, la cercanía y la confianza son lo más importante. Queremos acompañarlos en sus primeros descubrimientos y verlos crecer con personas que los escuchen. Porque elegir colegio también es elegir una comunidad.</p></details></div>`;
+  openDialog(detailDialog);
+  document.querySelector('#family-video').play().catch(() => { /* Native controls remain available if autoplay is restricted. */ });
+});
 
 let contactSeen = false;
 try { contactSeen = sessionStorage.getItem('aragon-contact-seen') === 'yes'; } catch { /* Storage can be unavailable in private contexts. */ }

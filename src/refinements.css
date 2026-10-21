@@ -1,0 +1,190 @@
+/* Admissions share the hero's typography, colors and visual plane. */
+.hero { min-height: 700px; }
+.hero-content { padding-block: 65px 0; }
+.admission-entry {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 70px;
+  display: grid;
+  grid-template-columns: .7fr 1fr 1fr;
+  gap: 28px;
+  padding: 0;
+  scroll-margin-top: 140px;
+}
+.year-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 28px 19px;
+  text-align: left;
+  color: #fff;
+  background: linear-gradient(120deg, #0c223fd9, #0c223f85);
+  border: 1px solid #ffffff70;
+  border-radius: 7px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px #06152218;
+  transition: background .3s, box-shadow .3s;
+}
+.year-card:first-child { grid-column: 2; }
+.year-card:hover { background: #10294af0; box-shadow: 0 12px 35px #06152245; }
+.year-gold { border-color: #f5d68cb3; background: linear-gradient(120deg, #183044df, #23394b90); }
+.year-label { font-size: 8px; font-weight: 700; letter-spacing: 1.7px; color: var(--gold-light); }
+.year-title { font-family: var(--serif); font-size: 38px; letter-spacing: -.6px; line-height: 1.25; margin-top: 8px; font-weight: 400; }
+.year-title em { color: var(--gold-light); font-weight: 400; }
+.year-detail { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 12px; font-size: 10px; color: #f2f4f7; }
+.year-arrow { width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid #ffffff70; border-radius: 50%; }
+.year-arrow .icon { width: 15px; height: 15px; }
+.motion-ready .level-card:nth-child(2),
+.motion-ready .value:nth-child(2),
+.motion-ready .year-card:nth-child(2),
+.motion-ready .family-layout > .reveal:nth-child(2) { transition-delay: .12s; }
+.values { border-top: 0; padding-top: 40px; }
+.level-title { font-size: 43px; }
+
+/* A photographic family story beside a more personal testimonial carousel. */
+.families { background: var(--deep); color: white; position: relative; overflow: hidden; }
+.families::before { content: ''; width: 650px; height: 650px; position: absolute; right: -220px; top: -360px; border: 1px solid #f5d68c15; border-radius: 50%; box-shadow: 0 0 0 65px #f5d68c05, 0 0 0 130px #f5d68c03; pointer-events: none; }
+.family-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 35px; margin-bottom: 40px; }
+.family-heading h2 { font-size: 46px; margin-top: 15px; line-height: 1.15; }
+.family-heading h2 em { color: var(--gold-light); }
+.family-heading > p { color: #bfcbd9; font-size: 12px; line-height: 1.9; padding-bottom: 4px; }
+.family-layout { display: grid; grid-template-columns: 1.35fr 1fr; gap: 28px; align-items: stretch; }
+.family-film { min-height: 590px; display: block; position: relative; overflow: hidden; border-radius: 10px; color: #fff; text-align: left; padding: 0; background: #233c43; isolation: isolate; }
+.family-film > img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: 58% center; transition: transform 1s ease; }
+.family-film:hover > img { transform: scale(1.035); }
+.film-shade { position: absolute; inset: 0; background: linear-gradient(0deg, #06182be8, #06182b10 65%), linear-gradient(180deg, #06182b60, transparent 30%); }
+.film-label { position: absolute; left: 30px; top: 28px; font-size: 8px; letter-spacing: 2px; font-weight: 700; color: var(--gold-light); }
+.film-play { width: 76px; height: 76px; border: 1px solid #ffffffb3; border-radius: 50%; position: absolute; left: 50%; top: 45%; transform: translate(-50%, -50%); display: grid; place-items: center; background: #ffffff1c; backdrop-filter: blur(8px); transition: background .3s, box-shadow .3s; }
+.film-play .icon { width: 26px; height: 26px; margin-left: 4px; fill: #fff; stroke-width: 1; }
+.family-film:hover .film-play { background: #dcb153aa; box-shadow: 0 0 0 12px #ffffff12; }
+.film-caption { display: flex; flex-direction: column; position: absolute; left: 32px; right: 30px; bottom: 35px; }
+.film-title { font-family: var(--serif); font-size: 43px; line-height: 1.12; letter-spacing: -.7px; }
+.film-action { display: inline-flex; align-items: center; gap: 14px; margin-top: 20px; font-size: 11px; font-weight: 650; }
+.film-action .icon { width: 18px; height: 18px; color: var(--gold-light); }
+.film-duration { position: absolute; bottom: 37px; right: 29px; font-size: 10px; color: #e2e8ef; border: 1px solid #ffffff60; padding: 2px 9px; border-radius: 20px; }
+.quote-card { background: #faf8f3; color: var(--navy); border-radius: 10px; overflow: hidden; padding: 0; display: flex; flex-direction: column; }
+.quote-photo { position: relative; height: 230px; overflow: hidden; flex-shrink: 0; background: #9b9c7b; }
+.quote-photo > img { width: 100%; height: 100%; object-fit: cover; object-position: center 12%; }
+.quote-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, #10294a60, transparent 65%); }
+.quote-photo-tag { position: absolute; left: 25px; bottom: 18px; z-index: 1; font-size: 7px; letter-spacing: 1.6px; color: #fff; font-weight: 700; }
+.quote-body { padding: 30px 31px 20px; flex: 1; display: flex; flex-direction: column; }
+.quote-mark { font-family: Georgia, serif; line-height: .55; font-size: 70px; color: #b78b36; margin-top: 9px; }
+.quote-card #quote-text { font-family: var(--serif); font-size: 24px; line-height: 1.4; color: var(--navy); letter-spacing: -.2px; margin-top: 8px; min-height: 135px; }
+.quote-person { display: flex; align-items: center; gap: 10px; margin-top: 23px; }
+.avatar { width: 34px; height: 34px; display: grid; place-items: center; flex-shrink: 0; border-radius: 50%; background: #e9dcbf; color: #85652c; }
+.avatar .icon { width: 17px; height: 17px; }
+.quote-person strong { display: block; font-size: 10px; line-height: 1.6; font-weight: 800; }
+.quote-person div > span { display: block; font-size: 7px; margin-top: 3px; color: #6b7480; }
+.quote-navigation { margin-top: auto; padding-top: 22px; display: flex; align-items: center; justify-content: space-between; }
+#quote-position { font-size: 9px; letter-spacing: 1.6px; color: #797e82; }
+.quote-controls { display: flex; gap: 9px; }
+.quote-controls .icon-button { border: 1px solid #d2d7dd; width: 33px; height: 33px; transition: background .2s; }
+.quote-controls .icon-button:hover { background: #e5e9ed; }
+.quote-controls .icon { width: 15px; height: 15px; }
+.quote-prev .icon { transform: rotate(180deg); }
+.family-disclosure { color: #afbdce; font-size: 9px; margin-top: 22px; text-align: center; }
+.story-dialog-heading { padding: 39px 40px 24px; }
+.story-dialog-heading h2 { font-size: 37px; line-height: 1.1; margin-block: 12px; }
+.story-dialog-heading > p { font-size: 11px; }
+.family-video { width: 100%; aspect-ratio: 16 / 9; background: #06182b; }
+.family-video::cue { font-family: Arial, sans-serif; background: #06182bd9; color: #fff; font-size: 15px; }
+.story-dialog-note { padding: 22px 35px 30px; }
+.story-dialog-note p { font-size: 11px; line-height: 1.9; }
+.story-dialog-note details { margin-top: 15px; font-size: 11px; }
+.story-dialog-note summary { cursor: pointer; font-weight: 700; }
+.story-dialog-note details p { margin-top: 10px; }
+
+@media (min-width: 1500px) {
+  .hero { min-height: 750px; }
+  .hero-content { padding-top: 80px; }
+  .year-title { font-size: 41px; }
+}
+@media (max-width: 1150px) {
+  .admission-entry { grid-template-columns: .5fr 1fr 1fr; gap: 23px; }
+  .year-card { padding: 23px; }
+  .year-title { font-size: 34px; }
+  .family-heading h2 { font-size: 41px; }
+  .family-heading > p { max-width: 255px; font-size: 11px; }
+  .family-layout { gap: 22px; grid-template-columns: 1.15fr 1fr; }
+  .quote-body { padding: 28px 26px 20px; }
+  .quote-card #quote-text { font-size: 23px; }
+  .film-title { font-size: 39px; }
+  .film-caption { left: 28px; }
+}
+@media (max-width: 900px) {
+  .hero { min-height: 700px; }
+  .hero-content { padding-top: 65px; }
+  .admission-entry { grid-template-columns: .15fr 1fr 1fr; gap: 20px; }
+  .year-card { padding: 21px; }
+  .year-title { font-size: 32px; }
+  .year-label { font-size: 7px; letter-spacing: 1.2px; }
+  .year-detail { font-size: 9px; }
+  .family-heading { align-items: flex-start; flex-direction: column; gap: 20px; }
+  .family-heading h2 { font-size: 39px; }
+  .family-heading > p { max-width: none; }
+  .family-layout { grid-template-columns: 1fr 1fr; gap: 18px; }
+  .family-film { min-height: 580px; }
+  .quote-photo { height: 195px; }
+  .quote-body { padding: 26px 22px 20px; }
+  .quote-card #quote-text { font-size: 22px; min-height: 155px; }
+  .quote-person strong { font-size: 9px; }
+  .quote-person div > span { font-size: 6.5px; }
+  .film-title { font-size: 35px; }
+  .film-caption { left: 23px; right: 20px; bottom: 32px; }
+  .film-action { font-size: 9px; gap: 8px; }
+  .film-duration { bottom: 72px; right: 18px; font-size: 8px; }
+  .film-label { left: 22px; font-size: 7px; letter-spacing: 1.4px; }
+  .film-play { width: 65px; height: 65px; }
+  .level-title { font-size: 37px; }
+}
+@media (max-width: 600px) {
+  .hero { min-height: 710px; }
+  .hero-content { padding-block: 60px 0; }
+  .admission-entry { grid-template-columns: 1fr 1fr; gap: 12px; bottom: 65px; }
+  .year-card:first-child { grid-column: auto; }
+  .year-card { padding: 17px 14px 14px; border-radius: 6px; min-height: 142px; }
+  .year-label { font-size: 6px; line-height: 1.8; letter-spacing: .65px; }
+  .year-title { margin-top: 7px; font-size: 24px; line-height: 1.15; letter-spacing: -.4px; }
+  .year-title em { display: block; margin-top: 3px; font-size: 30px; }
+  .year-detail { margin-top: 10px; font-size: 8px; gap: 5px; }
+  .year-arrow { width: 23px; height: 23px; flex-shrink: 0; }
+  .year-arrow .icon { width: 13px; height: 13px; }
+  .values { padding-top: 30px; }
+  .level-title { font-size: 45px; }
+  .family-heading { gap: 18px; margin-bottom: 28px; }
+  .family-heading h2 { font-size: 34px; }
+  .family-heading > p { font-size: 11px; }
+  .family-layout { grid-template-columns: 1fr; gap: 23px; }
+  .family-film { min-height: 450px; }
+  .family-film > img { object-position: 56% center; }
+  .film-label { font-size: 7px; top: 24px; left: 24px; }
+  .film-title { font-size: 38px; }
+  .film-caption { bottom: 28px; left: 25px; }
+  .film-action { font-size: 10px; margin-top: 16px; }
+  .film-duration { bottom: 30px; right: 22px; font-size: 8px; }
+  .film-play { top: 43%; width: 70px; height: 70px; }
+  .quote-photo { height: 225px; }
+  .quote-body { padding: 29px 26px 23px; }
+  .quote-card #quote-text { font-size: 25px; min-height: 140px; }
+  .quote-person strong { font-size: 10px; }
+  .quote-person div > span { font-size: 7px; }
+  .quote-navigation { padding-top: 22px; }
+  .family-disclosure { font-size: 8px; line-height: 1.9; padding-inline: 5px; }
+  .story-dialog-heading { padding: 40px 23px 22px; }
+  .story-dialog-heading h2 { font-size: 32px; }
+  .story-dialog-heading .eyebrow { font-size: 7px; }
+  .story-dialog-heading > p { font-size: 10px; }
+  .story-dialog-note { padding: 19px 23px 25px; }
+  .story-dialog-note p { font-size: 10px; }
+}
+@media (max-width: 360px) {
+  .hero { min-height: 690px; }
+  .year-card { padding-inline: 11px; }
+  .year-title { font-size: 22px; }
+  .year-label { font-size: 5px; }
+  .year-detail { font-size: 7px; }
+  .family-heading h2 { font-size: 30px; }
+  .film-duration { bottom: 74px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-ready .reveal { opacity: 1; transform: none; transition: none; }
+}

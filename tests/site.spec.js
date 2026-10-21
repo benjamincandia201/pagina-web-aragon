@@ -104,12 +104,69 @@ test('los testimonios cambian y están identificados como ejemplos', async ({ pa
   await visit(page);
   const quote = page.locator('#quote-text');
   const initial = await quote.textContent();
+  const initialPhoto = await page.locator('#quote-photo').getAttribute('src');
   await page.getByRole('button', { name: 'Testimonio siguiente' }).click();
   await expect(quote).not.toHaveText(initial);
+  await expect(page.locator('#quote-photo')).not.toHaveAttribute('src', initialPhoto);
   await expect(page.locator('#quote-position')).toHaveText('02 / 03');
   await page.getByRole('button', { name: 'Testimonio anterior' }).click();
   await expect(quote).toHaveText(initial);
   await expect(page.locator('.quote-person')).toContainText('Testimonio de ejemplo');
+});
+
+test('las admisiones están sobre el video y comparten la tipografía de portada', async ({ page }) => {
+  await visit(page);
+  const geometry = await page.evaluate(() => {
+    const hero = document.querySelector('.hero').getBoundingClientRect();
+    const titleFont = getComputedStyle(document.querySelector('h1')).fontFamily;
+    return [...document.querySelectorAll('[data-admission]')].map(button => {
+      const rect = button.getBoundingClientRect();
+      return {
+        inside: rect.top > hero.top + hero.height / 2 && rect.bottom < hero.bottom && rect.left >= hero.left && rect.right <= hero.right,
+        fontMatches: getComputedStyle(button.querySelector('.year-title')).fontFamily === titleFont,
+      };
+    });
+  });
+  expect(geometry).toEqual([{ inside: true, fontMatches: true }, { inside: true, fontMatches: true }]);
+});
+
+test('los niveles tienen un 33 por ciento más de altura y mantienen el ancho de pantalla', async ({ page }, testInfo) => {
+  await visit(page);
+  const originalHeight = testInfo.project.name === 'mobile' ? 380 : 411;
+  const height = await page.locator('.level-card').first().evaluate(element => element.getBoundingClientRect().height);
+  expect(height).toBeCloseTo(originalHeight * 1.33, 1);
+  for (const width of [320, 390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
+});
+
+test('el video de familias reproduce narración y subtítulos y se detiene al cerrar', async ({ page }) => {
+  await visit(page);
+  await page.getByRole('button', { name: 'Reproducir video de ejemplo de familias' }).click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).toContainText('No es una entrevista real');
+  const film = page.locator('#family-video');
+  await expect.poll(() => film.evaluate(video => video.currentTime)).toBeGreaterThan(0);
+  expect(await film.evaluate(video => video.muted)).toBe(false);
+  expect(await film.evaluate(video => video.duration)).toBeCloseTo(30, 0);
+  await expect.poll(() => film.evaluate(video => video.textTracks[0]?.cues?.length || 0)).toBeGreaterThan(0);
+  await dialog.getByText('Leer el relato de ejemplo').click();
+  await expect(dialog.locator('details')).toHaveAttribute('open', '');
+  await dialog.getByRole('button', { name: 'Cerrar información' }).click();
+  expect(await film.evaluate(video => video.paused)).toBe(true);
+  expect(await page.locator('#hero-video').evaluate(video => video.paused)).toBe(true);
+});
+
+test('los bloques se revelan suavemente desde abajo al desplazarse', async ({ page }) => {
+  await visit(page);
+  const target = page.locator('.about-copy');
+  expect(await target.evaluate(element => getComputedStyle(element).opacity)).toBe('0');
+  expect(await target.evaluate(element => new DOMMatrix(getComputedStyle(element).transform).m42)).toBe(40);
+  await target.scrollIntoViewIfNeeded();
+  await expect(target).toHaveClass(/visible/);
+  await expect.poll(() => target.evaluate(element => Number(getComputedStyle(element).opacity))).toBe(1);
+  expect(await target.evaluate(element => new DOMMatrix(getComputedStyle(element).transform).m42)).toBe(0);
 });
 
 test('respeta movimiento reducido y mantiene los contenidos visibles', async ({ page }) => {
