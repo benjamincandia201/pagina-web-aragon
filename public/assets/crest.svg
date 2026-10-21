@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 110">
+  <defs><path id="top" d="M17 55a38 38 0 0 1 76 0"/><path id="bottom" d="M14 57a41 41 0 0 0 82 0"/></defs>
+  <circle cx="55" cy="55" r="52" fill="#10294a" stroke="#dfb34f" stroke-width="3"/>
+  <circle cx="55" cy="55" r="46" fill="none" stroke="#dfb34f" stroke-width=".8"/>
+  <circle cx="55" cy="55" r="32" fill="#28486b" stroke="#dfb34f"/>
+  <g fill="#e7b64b" font-family="Georgia,serif" text-anchor="middle"><text font-size="10.5" letter-spacing=".3"><textPath href="#top" startOffset="50%">COLEGIO ARAGÓN</textPath></text><text font-size="7.2" letter-spacing=".45"><textPath href="#bottom" startOffset="50%">EXCELENCIA EDUCATIVA</textPath></text></g>
+  <path d="M35 34h40v27c0 14-20 24-20 24S35 75 35 61z" fill="#e7b64b" stroke="#fff" stroke-width="1.7"/>
+  <path d="m36 53 38 10v8L36 61m2 10 25 7-8 6-14-9" fill="#bd3438"/>
+  <path d="M37 36h36v16H37z" fill="#173b60"/>
+  <path d="m44 40 11 3 11-3v8l-11 3-11-3z" fill="#fff"/><path d="M55 43v8" stroke="#173b60"/>
+</svg>
