@@ -47,8 +47,11 @@ Pruebas de navegador en escritorio (1440 px) y celular (390 px): carga de recurs
 - Admisión 2026 y 2027 aparecen sobre la parte inferior del video de portada, con tipografía y colores coordinados. Muestran una guía visual independiente, con selector de año y consulta contextual.
 - Prebásica, Básica y Media abren su presentación y permiten consultar por ese nivel.
 - Tarjetas de niveles con un 33% más de altura que la propuesta inicial.
+- Galería de infraestructura con imágenes ampliables de una cancha, una sala de informática y una biblioteca. Son referencias genéricas, no instalaciones confirmadas del colegio.
+- Sección de últimas actividades con ejemplos de salidas pedagógicas, feria de ciencias y arte, y una descripción breve bajo cada fotografía. No se presentan como actividades efectivamente realizadas.
 - Testimonios con fotografías que cambian con el relato y controles anterior y siguiente. Un apartado de video abre una pieza ilustrativa de 30 segundos con narración sintética en español, subtítulos y transcripción. No simula una entrevista real ni animación labial.
 - Menú móvil y animaciones suaves de abajo hacia arriba al desplazarse. Los elementos pueden volver a animarse si se regresa a ellos, y respetan la preferencia de movimiento reducido.
+- Se retiró el bloque «El sello Aragón» y se actualizaron sus enlaces para dirigirlos a infraestructura.
 - Video local silencioso de 19 segundos, con pausa y respeto a la preferencia de movimiento reducido.
 
 ## Material provisional y pendientes antes de publicar

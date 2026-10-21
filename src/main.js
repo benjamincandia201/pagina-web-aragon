@@ -1,5 +1,6 @@
 import './style.css';
 import './refinements.css';
+import './sections.css';
 
 const assets = `${import.meta.env.BASE_URL}assets/`;
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -26,6 +27,16 @@ const paths = {
 };
 const icon = (name, cls = '') => `<svg class="icon ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name] || paths.arrow}</svg>`;
 const brand = `<img src="${assets}crest.svg" alt="" width="58" height="64" /><span class="brand-words"><strong>Colegio Aragón</strong><small>EXCELENCIA EDUCATIVA</small></span>`;
+const facilities = [
+  { key: 'cancha', title: 'Cancha deportiva', image: 'infraestructura-cancha.webp', alt: 'Cancha escolar con arcos y aros de básquetbol, imagen genérica creada con IA', description: 'Un espacio para imaginar encuentros, juegos y nuevos desafíos en equipo.' },
+  { key: 'informatica', title: 'Sala de informática', image: 'infraestructura-informatica.webp', alt: 'Sala de informática luminosa con computadores y mesas, imagen genérica creada con IA', description: 'Tecnología y curiosidad para explorar nuevas formas de aprender.' },
+  { key: 'biblioteca', title: 'Biblioteca', image: 'infraestructura-biblioteca.webp', alt: 'Biblioteca escolar con libros y rincones de lectura, imagen genérica creada con IA', description: 'Historias, ideas y un lugar tranquilo para descubrir otros mundos.' },
+];
+const activities = [
+  { category: 'SALIDAS PEDAGÓGICAS', title: 'Aprender fuera de la sala', image: 'actividad-salida.webp', alt: 'Escolares explorando un jardín junto a sus profesoras, imagen ilustrativa IA', description: 'Explorar la naturaleza, hacer preguntas y descubrir juntos lo que nos rodea.' },
+  { category: 'CIENCIA Y CURIOSIDAD', title: 'Pequeñas ideas, grandes descubrimientos', image: 'actividad-ciencia.webp', alt: 'Niños compartiendo sus proyectos en una feria de ciencias, imagen ilustrativa IA', description: 'Una muestra de proyectos para experimentar, crear y aprender en equipo.' },
+  { category: 'ARTE Y VIDA ESCOLAR', title: 'Una comunidad llena de color', image: 'actividad-arte.webp', alt: 'Niños pintando juntos durante una actividad al aire libre, imagen ilustrativa IA', description: 'Pinceles, juegos y creatividad para compartir una jornada diferente.' },
+];
 
 document.querySelector('#app').innerHTML = `
   <div class="utility"><div class="container"><span>Un lugar para aprender. Una comunidad para crecer.</span><button data-contact>Conversemos ${icon('arrow')}</button></div></div>
@@ -34,7 +45,7 @@ document.querySelector('#app').innerHTML = `
       <a class="brand" href="#inicio" aria-label="Colegio Aragón, inicio">${brand}</a>
       <button class="menu-toggle icon-button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navigation">${icon('menu')}</button>
       <nav id="navigation" aria-label="Navegación principal">
-        <a href="#colegio">Nuestro colegio</a><a href="#niveles">Niveles educativos</a><a href="#familias">Nuestras familias</a><a href="#admision">Admisión ${icon('down')}</a>
+        <a href="#infraestructura">Infraestructura</a><a href="#niveles">Niveles educativos</a><a href="#familias">Nuestras familias</a><a href="#actividades">Actividades</a><a href="#admision">Admisión ${icon('down')}</a>
         <button class="button button-navy nav-contact" data-contact>Hablemos ${icon('arrow')}</button>
       </nav>
     </div>
@@ -47,7 +58,7 @@ document.querySelector('#app').innerHTML = `
         <div class="eyebrow light"><span></span> BIENVENIDOS A COLEGIO ARAGÓN</div>
         <h1>Excelencia que<br>forma <em>personas.</em></h1>
         <p>El lugar donde tus hijos se sienten seguros,<br class="desktop-break"> descubren sus talentos y crecen acompañados.</p>
-        <a class="hero-link" href="#colegio">Conoce nuestra comunidad <span class="circle-arrow">${icon('arrow')}</span></a>
+        <a class="hero-link" href="#infraestructura">Conoce nuestra comunidad <span class="circle-arrow">${icon('arrow')}</span></a>
       </div>
       <div class="admission-entry container" id="admision" role="group" aria-label="Procesos de admisión">
         <button class="year-card year-light reveal" data-admission="2026"><span class="year-label">CONSTRUYAMOS SU PRESENTE</span><span class="year-title">Admisión <em>2026</em></span><span class="year-detail">Conoce el proceso <span class="year-arrow">${icon('diagonal')}</span></span></button>
@@ -74,9 +85,17 @@ document.querySelector('#app').innerHTML = `
       </div>
     </section>
 
-    <section class="about section-space container" id="colegio">
-      <div class="about-visual reveal"><img src="${assets}prebasica.webp" alt="Una experiencia de aprendizaje cercana, representación ilustrativa" loading="lazy" /><div class="visual-note">${icon('heart')}<span>Educar también<br>es acompañar.</span></div></div>
-      <div class="about-copy reveal"><span class="eyebrow">EL SELLO ARAGÓN</span><h2>Un colegio que enseña.<br>Una comunidad<br>que <em>acompaña.</em></h2><p>Elegir colegio es elegir a quienes acompañarán a tus hijos a descubrir quiénes son y todo lo que pueden llegar a ser.</p><p>Queremos que conozcas los espacios, las personas y la forma de aprender que darán vida a esa decisión.</p><button class="text-link" data-contact>Nos encantaría conocerte ${icon('arrow')}</button><div class="about-signature">${icon('sprout')} Crecer con confianza. Aprender con sentido.</div></div>
+    <section class="infrastructure section-space" id="infraestructura" aria-labelledby="infrastructure-title"><div class="container">
+      <div class="section-heading reveal"><div><span class="eyebrow">ESPACIOS PARA DESCUBRIR</span><h2 id="infrastructure-title">Conoce nuestra<br><em>infraestructura.</em></h2></div><p>Un recorrido por los espacios donde aprender,<br class="desktop-break"> compartir y crecer toma forma.</p></div>
+      <div class="facility-grid">${facilities.map((facility, index) => `
+        <button class="facility-card reveal" data-facility="${facility.key}" aria-label="Ver foto de ${facility.title}">
+          <img src="${assets}${facility.image}" alt="${facility.alt}" loading="lazy" />
+          <span class="facility-shade"></span><span class="facility-number">0${index + 1} / NUESTROS ESPACIOS</span>
+          <span class="facility-caption"><span class="facility-title">${facility.title}</span><span class="facility-action">Explora el espacio ${icon('diagonal')}</span></span>
+        </button>`).join('')}
+      </div>
+      <p class="section-disclosure reveal">Galería de referencia con imágenes genéricas creadas con IA. Los espacios y sus fotografías se confirmarán con el colegio.</p>
+    </div>
     </section>
 
     <section class="families section-space" id="familias"><div class="container">
@@ -96,6 +115,16 @@ document.querySelector('#app').innerHTML = `
         </article>
       </div>
       <p class="family-disclosure reveal">Una muestra de cómo contaremos sus historias. Fotografías, relatos y video de ejemplo creados con IA; no corresponden a testimonios reales.</p>
+    </div></section>
+
+    <section class="activities section-space" id="actividades" aria-labelledby="activities-title"><div class="container">
+      <div class="section-heading reveal"><div><span class="eyebrow">ASÍ SE VIVE LA VIDA ESCOLAR</span><h2 id="activities-title">Nuestras últimas<br><em>actividades.</em></h2></div><p>Momentos para aprender de otra manera.<br class="desktop-break"> Recuerdos para seguir creciendo juntos.</p></div>
+      <div class="activity-grid">${activities.map(activity => `
+        <article class="activity-card reveal"><div class="activity-photo"><img src="${assets}${activity.image}" alt="${activity.alt}" loading="lazy" /></div>
+          <div class="activity-copy"><span class="activity-category">${activity.category}</span><h3>${activity.title}</h3><p>${activity.description}</p></div>
+        </article>`).join('')}
+      </div>
+      <p class="section-disclosure reveal">Actividades e imágenes de ejemplo. Pronto compartiremos las experiencias reales de nuestra comunidad.</p>
     </div></section>
 
     <section class="contact-section section-space container" id="contacto"><div class="contact-banner reveal"><span class="contact-decoration" aria-hidden="true">${icon('sprout')}</span><div><span class="eyebrow">EL PRIMER PASO ES CONOCERNOS</span><h2>Hablemos del futuro<br>de tus hijos.</h2><p>Cuéntanos qué buscas. Nos encantará orientarte.</p></div><button class="button button-navy" data-contact>Conversemos ${icon('arrow')}</button></div></section>
@@ -149,6 +178,12 @@ document.querySelectorAll('[data-level]').forEach(button => button.addEventListe
   const level = levels[button.dataset.level];
   document.querySelector('#detail-content').innerHTML = `<img class="detail-cover" src="${assets}${level.photo}.webp" alt="Representación ilustrativa del nivel ${level.title}" /><div class="detail-body"><span class="eyebrow">${level.eyebrow}</span><h2 id="detail-title">${level.title}</h2><h3>${level.intro}</h3><p>${level.copy}</p><ul class="feature-list">${level.features.map(item => `<li>${icon('check')}${item}</li>`).join('')}</ul><p class="detail-note">Presentación ilustrativa. La propuesta educativa y los niveles disponibles deben ser confirmados por el colegio.</p><button class="button button-navy" id="level-contact">Quiero saber más ${icon('arrow')}</button></div>`;
   document.querySelector('#level-contact').addEventListener('click', () => openContact(`Consulta sobre ${level.title}`));
+  openDialog(detailDialog);
+}));
+
+document.querySelectorAll('[data-facility]').forEach(button => button.addEventListener('click', () => {
+  const facility = facilities.find(item => item.key === button.dataset.facility);
+  document.querySelector('#detail-content').innerHTML = `<img class="facility-preview" src="${assets}${facility.image}" alt="${facility.alt}" /><div class="detail-body"><span class="eyebrow">UN ESPACIO PARA CADA DESCUBRIMIENTO</span><h2 id="detail-title">${facility.title}</h2><p>${facility.description}</p><p class="detail-note">Imagen genérica creada con IA. No representa una instalación real ni confirma los espacios disponibles en Colegio Aragón.</p></div>`;
   openDialog(detailDialog);
 }));
 

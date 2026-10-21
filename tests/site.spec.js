@@ -154,19 +154,45 @@ test('el video de familias reproduce narración y subtítulos y se detiene al ce
   await dialog.getByText('Leer el relato de ejemplo').click();
   await expect(dialog.locator('details')).toHaveAttribute('open', '');
   await dialog.getByRole('button', { name: 'Cerrar información' }).click();
-  expect(await film.evaluate(video => video.paused)).toBe(true);
+  // Native dialog close events are queued; wait for the media cleanup handler.
+  await expect.poll(() => film.evaluate(video => video.paused)).toBe(true);
   expect(await page.locator('#hero-video').evaluate(video => video.paused)).toBe(true);
 });
 
 test('los bloques se revelan suavemente desde abajo al desplazarse', async ({ page }) => {
   await visit(page);
-  const target = page.locator('.about-copy');
+  const target = page.locator('#infraestructura .section-heading');
   expect(await target.evaluate(element => getComputedStyle(element).opacity)).toBe('0');
   expect(await target.evaluate(element => new DOMMatrix(getComputedStyle(element).transform).m42)).toBe(40);
   await target.scrollIntoViewIfNeeded();
   await expect(target).toHaveClass(/visible/);
   await expect.poll(() => target.evaluate(element => Number(getComputedStyle(element).opacity))).toBe(1);
   expect(await target.evaluate(element => new DOMMatrix(getComputedStyle(element).transform).m42)).toBe(0);
+});
+
+test('la infraestructura se puede ampliar y los enlaces llevan a secciones existentes', async ({ page }) => {
+  await visit(page);
+  await expect(page.getByText('EL SELLO ARAGÓN', { exact: true })).toHaveCount(0);
+  for (const button of await page.locator('[data-facility]').all()) {
+    await button.click();
+    const dialog = page.getByRole('dialog');
+    await expect(dialog).toContainText('No representa una instalación real');
+    await dialog.locator('img').evaluate(image => image.decode());
+    await page.keyboard.press('Escape');
+    await expect(dialog).not.toBeVisible();
+    await expect(button).toBeFocused();
+  }
+  const missingTargets = await page.evaluate(() => [...document.querySelectorAll('a[href^="#"]')]
+    .filter(link => !document.getElementById(link.hash.slice(1)))
+    .map(link => link.hash));
+  expect(missingTargets).toEqual([]);
+  const cards = page.locator('#actividades article');
+  for (const card of await cards.all()) {
+    await card.scrollIntoViewIfNeeded();
+    const image = await card.locator('img').boundingBox();
+    const description = await card.locator('p').boundingBox();
+    expect(description.y).toBeGreaterThanOrEqual(image.y + image.height);
+  }
 });
 
 test('respeta movimiento reducido y mantiene los contenidos visibles', async ({ page }) => {

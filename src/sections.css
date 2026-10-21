@@ -1,0 +1,77 @@
+.infrastructure { background: #fff; }
+.facility-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  grid-template-rows: repeat(2, 258px);
+  gap: 23px;
+}
+.facility-card {
+  display: block;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 8px;
+  padding: 0;
+  text-align: left;
+  color: #fff;
+  background: var(--navy);
+}
+.facility-card:first-child { grid-row: 1 / 3; }
+.facility-card > img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease; }
+.facility-card:hover > img { transform: scale(1.04); }
+.facility-shade { position: absolute; inset: 0; background: linear-gradient(0deg, #071d36e8, #071d3620 62%), linear-gradient(180deg, #071d3635, transparent 35%); }
+.facility-number { position: absolute; top: 25px; left: 28px; font-size: 7px; font-weight: 700; letter-spacing: 1.6px; color: #fff4d6; }
+.facility-caption { position: absolute; left: 28px; right: 28px; bottom: 25px; display: flex; flex-direction: column; gap: 11px; }
+.facility-title { font-family: var(--serif); font-size: 33px; line-height: 1.2; letter-spacing: -.6px; }
+.facility-card:first-child .facility-title { font-size: 43px; }
+.facility-action { display: flex; justify-content: space-between; align-items: center; gap: 15px; font-size: 10px; color: #eef1f6; }
+.facility-action .icon { width: 18px; height: 18px; color: var(--gold-light); }
+.section-disclosure { font-size: 9px; color: #74808b; margin-top: 23px; text-align: center; line-height: 1.9; }
+.facility-preview { width: 100%; max-height: 500px; object-fit: contain; background: #0c223f; }
+.activities { background: var(--cream); }
+.activity-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.activity-card { background: #fff; border: 1px solid #e8e7e1; border-radius: 9px; overflow: hidden; }
+.activity-photo { aspect-ratio: 3 / 2; overflow: hidden; background: #e6e8e4; }
+.activity-photo > img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease; }
+.activity-card:hover .activity-photo > img { transform: scale(1.035); }
+.activity-copy { padding: 26px 26px 30px; }
+.activity-category { display: block; font-size: 7px; letter-spacing: 1.4px; font-weight: 800; color: #94702c; }
+.activity-copy h3 { font-family: var(--serif); font-size: 26px; font-weight: 400; line-height: 1.2; letter-spacing: -.4px; margin-top: 13px; }
+.activity-copy p { font-size: 11px; line-height: 1.9; margin-top: 15px; }
+.motion-ready .facility-card:nth-child(2), .motion-ready .activity-card:nth-child(2) { transition-delay: .12s; }
+.motion-ready .facility-card:nth-child(3), .motion-ready .activity-card:nth-child(3) { transition-delay: .24s; }
+@media (max-width: 1150px) {
+  .facility-grid { grid-template-rows: repeat(2, 230px); gap: 20px; }
+  .facility-title { font-size: 30px; }
+  .facility-card:first-child .facility-title { font-size: 38px; }
+  .activity-grid { gap: 20px; }
+  .activity-copy { padding: 23px 21px 26px; }
+  .activity-copy h3 { font-size: 24px; }
+}
+@media (max-width: 900px) {
+  .facility-grid { grid-template-columns: 1.1fr 1fr; grid-template-rows: repeat(2, 215px); gap: 17px; }
+  .facility-caption { left: 22px; right: 22px; bottom: 22px; }
+  .facility-number { left: 22px; top: 22px; font-size: 6px; }
+  .facility-title { font-size: 28px; }
+  .facility-card:first-child .facility-title { font-size: 34px; }
+  .activity-grid { gap: 15px; }
+  .activity-copy { padding: 21px 18px 23px; }
+  .activity-copy h3 { font-size: 23px; }
+  .activity-category { font-size: 6px; letter-spacing: .8px; }
+  .activity-copy p { font-size: 10px; }
+}
+@media (max-width: 600px) {
+  .facility-grid { grid-template-columns: 1fr; grid-template-rows: 380px 290px 290px; gap: 18px; }
+  .facility-card:first-child { grid-row: auto; }
+  .facility-caption { left: 24px; right: 24px; bottom: 25px; }
+  .facility-title { font-size: 32px; }
+  .facility-card:first-child .facility-title { font-size: 37px; }
+  .facility-number { left: 24px; top: 24px; font-size: 7px; }
+  .facility-action { font-size: 10px; }
+  .activity-grid { grid-template-columns: 1fr; gap: 23px; }
+  .activity-copy { padding: 25px 24px 28px; }
+  .activity-copy h3 { font-size: 28px; }
+  .activity-copy p { font-size: 12px; margin-top: 14px; }
+  .activity-category { font-size: 7px; letter-spacing: 1.3px; }
+  .section-disclosure { font-size: 8px; padding-inline: 5px; margin-top: 20px; }
+}
